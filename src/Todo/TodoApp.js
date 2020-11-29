@@ -12,7 +12,6 @@ const styles = {
 
 export function TodoApp({ language }) {
     const lang = language
-    console.log(lang)
     const [ todos, setTodos ] = useState({ items: [], text: '' })
     const [ isSelectMode, setSelectMode ] = useState(false)
     const [ isItemSelected, setItemSelected ] = useState(false)
@@ -188,7 +187,7 @@ export function TodoApp({ language }) {
           </Card>
         </Row>
 
-        {editMode ? 
+        {(editMode && todos.items.length > 0) ? 
         <Row className="justify-content-center" >
           <Card style={styles.Card}>
             <Card.Header>{ (lang === "eng") ? 'Editing item' : 'Изменение элемента' } </Card.Header>
