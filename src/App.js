@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Container, Row, Button } from 'react-bootstrap'
 
-function App() {
+import { TodoApp } from './Todo/TodoApp'
+
+export default function App() {
+  const [ lang, setLang ] = useState('eng')
+  const [ islangSet, setIsLangSet ] = useState(false)
+
+  function appLangBlock() {
+    if (islangSet) {
+      if (lang === 'eng') {
+        return <TodoApp language={lang}/>
+      } else if (lang === 'rus') {
+        return <TodoApp language={lang}/>
+      }
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Container>
+      <Row className="justify-content-center">
+        <h3>{ (lang === "eng") ? 'Task manager' : 'Менеджер задач' } </h3>
+      </Row>
 
-export default App;
+      <hr style={{'width': '300px'}}/>
+
+      <Row className="justify-content-center" style={{'marginTop': '2rem'}}>
+        <h5>{ (lang === "eng") ? 'Set App language' : 'Выбрать язык' }</h5>
+      </Row>
+
+      <Row className="justify-content-center">
+        <Button 
+          onClick={() => {
+            setLang('eng')
+            setIsLangSet(true)}}
+          style={{'marginRight': '1rem'}}
+        >
+          English
+        </Button>
+        <Button onClick={() => {
+          setLang('rus')
+          setIsLangSet(true)
+        }}>
+          Русский
+        </Button>
+      </Row>
+
+      <hr style={{'width': '300px'}}/>
+
+      <Row className="justify-content-center" style={{'marginTop': '1rem'}}>
+        {appLangBlock()}
+      </Row>
+    </Container>
+
+  )
+}
