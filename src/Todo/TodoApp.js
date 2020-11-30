@@ -144,7 +144,7 @@ export function TodoApp({ language }) {
               }
             </Card.Header>
             
-            {isSelectMode ? <ListGroup variant="flush" key={1}>
+            {(isSelectMode && todos.items.length > 0) ? <ListGroup variant="flush" key={1}>
               <ListGroup.Item>
                 <Button 
                   key={1} 
@@ -187,7 +187,7 @@ export function TodoApp({ language }) {
           </Card>
         </Row>
 
-        {(editMode && todos.items.length > 0) ? 
+        {(isSelectMode && editMode && todos.items.length > 0) ? 
         <Row className="justify-content-center" >
           <Card style={styles.Card}>
             <Card.Header>{ (lang === "eng") ? 'Editing item' : 'Изменение элемента' } </Card.Header>
@@ -199,7 +199,7 @@ export function TodoApp({ language }) {
                       value={editText} 
                       onChange={handleChangeEditingInput} 
                       type="text" 
-                      placeholder={ (lang === "eng") ? 'New task' : 'Новая задача' }
+                      placeholder={ (lang === "eng") ? 'Type in new task' : 'Введите новую задачу' }
                     />
 
                     <Button 

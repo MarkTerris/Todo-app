@@ -52,6 +52,5 @@ export default function App() {
         {appLangBlock()}
       </Row>
     </Container>
-
   )
 }
